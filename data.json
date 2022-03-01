@@ -1,0 +1,254 @@
+{
+  "formdata": [
+    {
+      "name": "Textbox",
+      "label": "Textbox label",
+      "value": "",
+      "type": "textbox",
+      "controlType": "textbox",
+      "style": "outline",
+      "displayName": "Textbox",
+      "validators": {
+        "required": true,
+        "minLength": 3
+      },
+      "id": 1
+    },
+    {
+      "name": "button",
+      "label": "Button",
+      "value": "SubmitButton",
+      "controlType": "button",
+      "type": "button",
+      "color": "primary",
+      "style": "mat-raised-button",
+      "displayName": "Button",
+      "id": 2
+    },
+    {
+      "name": "Number",
+      "label": "NumberLabel",
+      "value": "",
+      "controlType": "number",
+      "type": "number",
+      "style": "outline",
+      "displayName": "Number",
+      "validators": {
+        "required": true
+      },
+      "id": 3
+    }
+  ],
+  "availableControls": [
+    {
+      "name": "Textbox",
+      "label": "TextBox",
+      "value": "",
+      "type": "textbox",
+      "controlType": "textbox",
+      "style": "outline",
+      "displayName": "Textbox",
+      "validators": {
+        "required": true,
+        "minLength": 3
+      }
+    },
+    {
+      "name": "button",
+      "label": "Button",
+      "value": "Submit",
+      "controlType": "button",
+      "type": "button",
+      "color": "primary",
+      "style": "mat-raised-button",
+      "displayName": "Button"
+    },
+    {
+      "name": "Number",
+      "label": "Number",
+      "value": "",
+      "controlType": "number",
+      "type": "number",
+      "style": "outline",
+      "displayName": "Number",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "Password",
+      "label": "Password",
+      "value": "",
+      "controlType": "password",
+      "type": "password",
+      "style": "outline",
+      "displayName": "Password",
+      "validators": {
+        "required": true,
+        "minLength": "6"
+      }
+    },
+    {
+      "name": "Textarea",
+      "label": "Textarea",
+      "value": "Some random text!!",
+      "controlType": "textarea",
+      "type": "textarea",
+      "style": "outline",
+      "displayName": "Textarea",
+      "validators": {}
+    },
+    {
+      "name": "checkbox",
+      "label": "Checkbox label",
+      "value": true,
+      "controlType": "checkbox",
+      "type": "checkbox",
+      "displayName": "Checkbox"
+    },
+    {
+      "name": "Radio",
+      "label": "Option 1",
+      "labelTwo": "Option 2",
+      "value": "ValueOne",
+      "valueTwo": "ValueTwo",
+      "controlType": "radio",
+      "type": "radio",
+      "displayName": "Radio"
+    }
+  ],
+  "savedForms": [
+    {
+      "actualForm": [
+        {
+          "name": "Textarea",
+          "label": "Textarea",
+          "value": "Some random text!! and some  more",
+          "controlType": "textarea",
+          "type": "textarea",
+          "style": "outline",
+          "displayName": "Textarea",
+          "validators": {},
+          "id": 1
+        },
+        {
+          "label": "Lastname",
+          "name": "Textbox",
+          "value": "New value truing",
+          "type": "textbox",
+          "controlType": "textbox",
+          "style": "outline",
+          "displayName": "Textbox",
+          "validators": {
+            "required": true,
+            "minLength": 3
+          },
+          "id": 4
+        },
+        {
+          "label": "Dont Click me!!",
+          "value": true,
+          "controlType": "checkbox",
+          "type": "checkbox",
+          "displayName": "Checkbox",
+          "id": 5
+        },
+        {
+          "name": "Textarea",
+          "label": "Textarea",
+          "value": "Some random text!!",
+          "controlType": "textarea",
+          "type": "textarea",
+          "style": "outline",
+          "displayName": "Textarea",
+          "validators": {},
+          "id": 7
+        },
+        {
+          "name": "Number",
+          "label": "Number",
+          "value": "1234567",
+          "controlType": "number",
+          "type": "number",
+          "style": "outline",
+          "displayName": "Number",
+          "validators": {
+            "required": true
+          },
+          "id": 8
+        },
+        {
+          "name": "Password",
+          "label": "Password",
+          "value": "1234567ss",
+          "controlType": "password",
+          "type": "password",
+          "style": "outline",
+          "displayName": "Password",
+          "validators": {
+            "required": true,
+            "minLength": "6"
+          },
+          "id": 9
+        },
+        {
+          "name": "button",
+          "label": "Button",
+          "value": "Submit",
+          "controlType": "button",
+          "type": "button",
+          "color": "primary",
+          "style": "mat-raised-button",
+          "displayName": "Button",
+          "id": 10
+        }
+      ],
+      "id": "04d34890-2a68-4456-acb7-d7ddbe4add18",
+      "date": "01/03/2022"
+    },
+    {
+      "actualForm": [
+        {
+          "name": "Number",
+          "label": "Number",
+          "value": "",
+          "controlType": "number",
+          "type": "number",
+          "style": "outline",
+          "displayName": "Number",
+          "validators": {
+            "required": true
+          }
+        },
+        {
+          "name": "Password",
+          "label": "Password",
+          "value": "",
+          "controlType": "password",
+          "type": "password",
+          "style": "outline",
+          "displayName": "Password",
+          "validators": {
+            "required": true,
+            "minLength": "6"
+          }
+        },
+        {
+          "name": "Password",
+          "label": "Password",
+          "value": "",
+          "controlType": "password",
+          "type": "password",
+          "style": "outline",
+          "displayName": "Password",
+          "validators": {
+            "required": true,
+            "minLength": "6"
+          }
+        }
+      ],
+      "id": "a8f0fd6d-bb68-401f-b18b-ef8b4d4d9265",
+      "date": "01/03/2022"
+    }
+  ]
+}
