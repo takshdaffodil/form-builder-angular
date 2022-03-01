@@ -3,16 +3,34 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormBuilderComponent } from './components/form-builder/form-builder.component';
+import { MaterialAngularModule } from './material-angular.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormEditorComponent } from './components/form-editor/form-editor.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteFieldComponent } from './components/delete-field/delete-field.component';
+import { PreviewFormComponent } from './components/preview-form/preview-form.component';
+import { ViewSavedFormsComponent } from './components/view-saved-forms/view-saved-forms.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormBuilderComponent,
+    FormEditorComponent,
+    DeleteFieldComponent,
+    PreviewFormComponent,
+    ViewSavedFormsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialAngularModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

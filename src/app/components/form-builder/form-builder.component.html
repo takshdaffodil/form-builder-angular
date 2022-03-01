@@ -1,0 +1,147 @@
+<mat-grid-list cols="4" rowHeight="100vh">
+  <mat-grid-tile colspan="1" style="border: 1px solid black">
+    <div class="example-container" style="margin-left: 10%">
+      <h2>Form Element List</h2>
+
+      <div
+        cdkDropList
+        #availableControlsList="cdkDropList"
+        [cdkDropListData]="availableControls"
+        class="example-list"
+        [cdkDropListConnectedTo]="[formControlsList]"
+      >
+        <div class="example-box" *ngFor="let item of availableControls" cdkDrag>
+          {{ item.displayName }}
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" style="border: 1px solid black">
+    <div class="example-container" style="width: 60%">
+      <div style="display: flex; justify-content: space-between; margin: 10px">
+        <h2>Form</h2>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            min-width: 300px;
+          "
+        >
+          <button
+            (click)="router.navigate(['preview-form'])"
+            color="primary"
+            mat-raised-button
+          >
+            Preview
+          </button>
+          <button (click)="saveForm()" mat-raised-button>Save</button>
+          <button
+            (click)="router.navigate(['view-forms'])"
+            color="primary"
+            mat-raised-button
+          >
+            View Saved
+          </button>
+        </div>
+      </div>
+      <div
+        cdkDropList
+        #formControlsList="cdkDropList"
+        [cdkDropListData]="formControls"
+        [cdkDropListConnectedTo]="[availableControlsList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+        style="padding: 30px"
+      >
+        <form
+          *ngFor="let control of formControls"
+          [ngSwitch]="control.controlType"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <mat-form-field
+            id="control.id"
+            cdkDrag
+            [appearance]="control.style"
+            class="full-width-input"
+            *ngSwitchCase="'textbox'"
+          >
+            <mat-label>{{ control.label }} </mat-label>
+            <input
+              [name]="control.name"
+              matInput
+              [type]="control.type"
+              [value]="control.value"
+            />
+          </mat-form-field>
+
+          <mat-form-field
+            id="control.id"
+            cdkDrag
+            [appearance]="control.style"
+            class="full-width-input"
+            *ngSwitchCase="'number'"
+          >
+            <mat-label>{{ control.label }} </mat-label>
+            <input
+              [name]="control.name"
+              matInput
+              [type]="control.type"
+              [value]="control.value"
+            />
+          </mat-form-field>
+          <mat-form-field
+            id="control.id"
+            cdkDrag
+            [appearance]="control.style"
+            class="full-width-input"
+            *ngSwitchCase="'password'"
+          >
+            <mat-label>{{ control.label }} </mat-label>
+            <input
+              [name]="control.name"
+              matInput
+              [type]="control.type"
+              [value]="control.value"
+            />
+          </mat-form-field>
+          <mat-form-field
+            id="control.id"
+            cdkDrag
+            [appearance]="control.style"
+            class="full-width-input"
+            *ngSwitchCase="'textarea'"
+            class="full-width-input"
+          >
+            <mat-label>{{ control.label }}</mat-label>
+            <textarea matInput [name]="control.name" [value]="control.value">
+            </textarea>
+          </mat-form-field>
+          <section cdkDrag *ngSwitchCase="'checkbox'">
+            <mat-checkbox
+              id="control.id"
+              name="control.name"
+              [checked]="control.value"
+            >
+              {{ control.label }}
+            </mat-checkbox>
+          </section>
+          <mat-radio-group cdkDrag *ngSwitchCase="'radio'">
+            <mat-radio-button value="control.value">{{
+              control.label
+            }}</mat-radio-button>
+            <mat-radio-button value="control.valueTwo">{{
+              control.labelTwo
+            }}</mat-radio-button>
+          </mat-radio-group>
+          <div id="control.id" cdkDrag *ngSwitchCase="'button'">
+            <button mat-raised-button [color]="control.color">
+              {{ control.value }}
+            </button>
+          </div>
+          <mat-icon (click)="openEditDialog(control)">edit</mat-icon>
+          <mat-icon (click)="openDeleteDialog(control)">delete</mat-icon>
+        </form>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

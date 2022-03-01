@@ -1,0 +1,100 @@
+<div style="margin-top: 100px">
+  <div class="heading" style="display: flex; justify-content: center">
+    <h1>Form Preview</h1>
+    <button
+      style="margin-left: 50px"
+      mat-raised-button
+      color="primary"
+      (click)="router.navigate(['form-builder'])"
+    >
+      Back to form build
+    </button>
+  </div>
+  <form
+    style="display: flex; justify-content: center; align-items: center"
+    *ngFor="let control of formControls"
+    [ngSwitch]="control.controlType"
+  >
+    <mat-form-field
+      [id]="control.id"
+      [appearance]="control.style"
+      class="full-width-input"
+      *ngSwitchCase="'textbox'"
+    >
+      <mat-label>{{ control.label }} </mat-label>
+      <input
+        [name]="control.name"
+        matInput
+        [type]="control.type"
+        [value]="control.value"
+      />
+    </mat-form-field>
+
+    <mat-form-field
+      [id]="control.id"
+      [appearance]="control.style"
+      class="full-width-input"
+      *ngSwitchCase="'number'"
+    >
+      <mat-label>{{ control.label }} </mat-label>
+      <input
+        [name]="control.name"
+        matInput
+        [type]="control.type"
+        [value]="control.value"
+      />
+    </mat-form-field>
+    <mat-form-field
+      [id]="control.id"
+      [appearance]="control.style"
+      class="full-width-input"
+      *ngSwitchCase="'password'"
+    >
+      <mat-label>{{ control.label }} </mat-label>
+      <input
+        [name]="control.name"
+        matInput
+        [type]="control.type"
+        [value]="control.value"
+      />
+    </mat-form-field>
+    <mat-form-field
+      [id]="control.id"
+      [appearance]="control.style"
+      class="full-width-input"
+      *ngSwitchCase="'textarea'"
+      class="full-width-input"
+    >
+      <mat-label>{{ control.label }}</mat-label>
+      <textarea
+        matInput
+        [name]="control.name"
+        [value]="control.value"
+      ></textarea>
+    </mat-form-field>
+    <section *ngSwitchCase="'checkbox'">
+      <mat-checkbox
+        [id]="control.id"
+        name="control.name"
+        [checked]="control.value"
+      >
+        {{ control.label }}
+      </mat-checkbox>
+    </section>
+    <mat-radio-group *ngSwitchCase="'radio'">
+      <mat-radio-button value="control.value">{{
+        control.label
+      }}</mat-radio-button>
+      <mat-radio-button value="control.valueTwo">{{
+        control.labelTwo
+      }}</mat-radio-button>
+    </mat-radio-group>
+    <div [id]="control.id" *ngSwitchCase="'button'">
+      <button mat-raised-button [color]="control.color">
+        {{ control.value }}
+      </button>
+    </div>
+    <!-- <mat-icon (click)="openEditDialog(control)">edit</mat-icon>
+        <mat-icon (click)="openDeleteDialog(control)">delete</mat-icon> -->
+  </form>
+</div>

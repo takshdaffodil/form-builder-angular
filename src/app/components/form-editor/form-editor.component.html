@@ -1,0 +1,239 @@
+<form [ngSwitch]="data.controlType">
+  <!-- textbox -->
+  <form
+    [formGroup]="commonForm"
+    (ngSubmit)="onSubmit($event, data.controlType)"
+  >
+    <div *ngSwitchCase="'textbox'">
+      <h1>Edit Textbox field</h1>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Label </mat-label>
+        <input
+          formControlName="labelEdit"
+          matInput
+          type="text"
+          name="labelEdit"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Name</mat-label>
+        <input
+          formControlName="nameEdit"
+          matInput
+          type="text"
+          name="nameEdit"
+          [value]="data.name"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Value </mat-label>
+        <input
+          formControlName="valueEdit"
+          matInput
+          type="text"
+          name="valueEdit"
+        />
+      </mat-form-field>
+      <!-- <mat-form-field class="full-width-input">
+        <mat-label formControlName="typeEdit"> Textbox Type </mat-label>
+        <select name="typeEdit" matNativeControl formControlName="typeEdit">
+          <option value="text">Text</option>
+          <option value="password">Password</option>
+          <option value="number">Number</option>
+          <option value="email">Email</option>
+        </select>
+      </mat-form-field> -->
+    </div>
+  </form>
+  <!-- textarea -->
+  <form [formGroup]="commonForm">
+    <div *ngSwitchCase="'textarea'">
+      <h1>Edit Textarea field</h1>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Label </mat-label>
+        <input
+          formControlName="labelEdit"
+          matInput
+          type="text"
+          name="labelEdit"
+          [value]="data.label"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Name</mat-label>
+        <input
+          formControlName="nameEdit"
+          matInput
+          type="text"
+          name="nameEdit"
+          [value]="data.name"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Value </mat-label>
+        <input
+          formControlName="valueEdit"
+          matInput
+          type="text"
+          name="valueEdit"
+          [value]="data.value"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  <!-- number -->
+  <form [formGroup]="commonForm">
+    <div *ngSwitchCase="'number'">
+      <h1>Edit Number field</h1>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Label </mat-label>
+        <input
+          formControlName="labelEdit"
+          matInput
+          type="text"
+          name="labelEdit"
+          [value]="data.label"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Name</mat-label>
+        <input
+          formControlName="nameEdit"
+          matInput
+          type="text"
+          name="nameEdit"
+          [value]="data.name"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Value </mat-label>
+        <input
+          formControlName="valueEdit"
+          matInput
+          type="text"
+          name="valueEdit"
+          [value]="data.value"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  <!-- password -->
+  <form [formGroup]="commonForm">
+    <div *ngSwitchCase="'password'">
+      <h1>Edit Password field</h1>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Label </mat-label>
+        <input
+          formControlName="labelEdit"
+          matInput
+          type="text"
+          name="labelEdit"
+          [value]="data.label"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Name</mat-label>
+        <input
+          formControlName="nameEdit"
+          matInput
+          type="text"
+          name="nameEdit"
+          [value]="data.name"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Value </mat-label>
+        <input
+          formControlName="valueEdit"
+          matInput
+          type="text"
+          name="valueEdit"
+          [value]="data.value"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  <!-- checkbox -->
+  <form [formGroup]="checkboxForm">
+    <div *ngSwitchCase="'checkbox'">
+      <h1>Edit Checkbox field</h1>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Label </mat-label>
+        <input
+          formControlName="labelEdit"
+          matInput
+          type="text"
+          name="labelEdit"
+          [value]="data.label"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Name</mat-label>
+        <input
+          formControlName="nameEdit"
+          matInput
+          type="text"
+          name="nameEdit"
+          [value]="data.name"
+        />
+      </mat-form-field>
+      <!-- <mat-form-field class="full-width-input">
+        <mat-label> Value </mat-label>
+        <mat-select>
+            <mat-option>True</mat-option>
+            <mat-option>False</mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    </div>
+  </form>
+  <!-- radio -->
+  <form [formGroup]="radioForm">
+    <div *ngSwitchCase="'radio'">
+      <h1>Edit Radio field</h1>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Label One </mat-label>
+        <input
+          formControlName="labelOne"
+          matInput
+          type="text"
+          name="labelEdit"
+          [value]="data.label"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Label Two</mat-label>
+        <input
+          formControlName="labelTwo"
+          matInput
+          type="text"
+          name="labelTwoEdit"
+          [value]="data.labelTwo"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  <!-- button -->
+  <form [formGroup]="buttonForm">
+    <div *ngSwitchCase="'button'">
+      <h1>Edit button value</h1>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label> Value </mat-label>
+        <input
+          formControlName="valueEdit"
+          matInput
+          type="text"
+          name="valueEdit"
+          [value]="data.value"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  <button
+    (click)="onSubmit($event, data.controlType)"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >
+    Update
+  </button>
+</form>
