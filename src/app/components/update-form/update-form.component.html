@@ -1,30 +1,13 @@
-<div style="margin-top: 100px">
-  <div class="heading" style="display: flex; justify-content: center">
-    <h1>Form Preview</h1>
-    <button
-      style="margin-left: 50px"
-      mat-raised-button
-      color="primary"
-      (click)="router.navigate(['form-builder'])"
-    >
-      Back to form build
-    </button>
-    <button
-      style="margin-left: 50px"
-      mat-raised-button
-      color="accent"
-      (click)="router.navigate(['view-forms'])"
-    >
-      Back to saved form
-    </button>
-  </div>
+<div class="example-list" style="padding: 30px">
+  <h1>Edit {{ data.name }} form</h1>
   <form
-    style="display: flex; justify-content: center; align-items: center"
     *ngFor="let control of formControls"
     [ngSwitch]="control.controlType"
+    style="display: flex; justify-content: center; align-items: center"
   >
     <mat-form-field
-      [id]="control.id"
+      id="control.id"
+      cdkDrag
       [appearance]="control.style"
       class="full-width-input"
       *ngSwitchCase="'textbox'"
@@ -39,7 +22,8 @@
     </mat-form-field>
 
     <mat-form-field
-      [id]="control.id"
+      id="control.id"
+      cdkDrag
       [appearance]="control.style"
       class="full-width-input"
       *ngSwitchCase="'number'"
@@ -53,7 +37,8 @@
       />
     </mat-form-field>
     <mat-form-field
-      [id]="control.id"
+      id="control.id"
+      cdkDrag
       [appearance]="control.style"
       class="full-width-input"
       *ngSwitchCase="'password'"
@@ -67,29 +52,27 @@
       />
     </mat-form-field>
     <mat-form-field
-      [id]="control.id"
+      id="control.id"
+      cdkDrag
       [appearance]="control.style"
       class="full-width-input"
       *ngSwitchCase="'textarea'"
       class="full-width-input"
     >
       <mat-label>{{ control.label }}</mat-label>
-      <textarea
-        matInput
-        [name]="control.name"
-        [value]="control.value"
-      ></textarea>
+      <textarea matInput [name]="control.name" [value]="control.value">
+      </textarea>
     </mat-form-field>
-    <section *ngSwitchCase="'checkbox'">
+    <section cdkDrag *ngSwitchCase="'checkbox'">
       <mat-checkbox
-        [id]="control.id"
+        id="control.id"
         name="control.name"
         [checked]="control.value"
       >
         {{ control.label }}
       </mat-checkbox>
     </section>
-    <mat-radio-group *ngSwitchCase="'radio'">
+    <mat-radio-group cdkDrag *ngSwitchCase="'radio'">
       <mat-radio-button value="control.value">{{
         control.label
       }}</mat-radio-button>
@@ -97,12 +80,13 @@
         control.labelTwo
       }}</mat-radio-button>
     </mat-radio-group>
-    <div [id]="control.id" *ngSwitchCase="'button'">
+    <div id="control.id" cdkDrag *ngSwitchCase="'button'">
       <button mat-raised-button [color]="control.color">
         {{ control.value }}
       </button>
     </div>
-    <!-- <mat-icon (click)="openEditDialog(control)">edit</mat-icon>
-        <mat-icon (click)="openDeleteDialog(control)">delete</mat-icon> -->
+    <mat-icon (click)="openEditDialog(control)">edit</mat-icon>
+    <!-- <mat-icon (click)="openDeleteDialog(control)">delete</mat-icon> -->
   </form>
+  <button mat-raised-button color="accent" mat-dialog-close>Edit done</button>
 </div>

@@ -1,0 +1,16 @@
+<form [formGroup]="saveForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Form name</mat-label>
+    <input
+      matInput
+      name="formName"
+      formControlName="name"
+      placeholder="Ex. MyForm"
+    />
+  </mat-form-field>
+  <div>
+    <button (click)="saveFormToDb($event)" mat-raised-button color="primary">
+      Save
+    </button>
+  </div>
+</form>

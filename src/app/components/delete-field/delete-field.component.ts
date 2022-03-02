@@ -7,20 +7,17 @@ import { FormService } from 'src/app/shared/services/form.service';
   templateUrl: './delete-field.component.html',
   styleUrls: ['./delete-field.component.css'],
 })
-export class DeleteFieldComponent implements OnInit {
+export class DeleteFieldComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public formservice: FormService,
     public dialogRef: MatDialogRef<DeleteFieldComponent>
   ) {}
 
-  ngOnInit(): void {}
-
   deleteField(event: any) {
     event.preventDefault();
-    this.formservice.deleteFormControlField(this.data.id).subscribe(() => {
-      console.log('field deleted');
-    });
-    this.dialogRef.close();
+    this.formservice.deleteFormControlField(this.data.id).subscribe(() => {});
+    let deleted = true;
+    this.dialogRef.close(deleted);
   }
 }

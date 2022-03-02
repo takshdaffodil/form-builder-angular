@@ -1,10 +1,12 @@
 import { copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
 import { DeleteFieldComponent } from '../delete-field/delete-field.component';
 import { FormEditorComponent } from '../form-editor/form-editor.component';
+import { SaveFormDialogComponent } from '../save-form-dialog/save-form-dialog.component';
 
 @Component({
   selector: 'app-form-builder',
@@ -14,10 +16,12 @@ import { FormEditorComponent } from '../form-editor/form-editor.component';
 export class FormBuilderComponent implements OnInit {
   availableControls: any;
   formControls: any[] = [];
+
   constructor(
     public formservice: FormService,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    public snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +73,7 @@ export class FormBuilderComponent implements OnInit {
 
   updateFormControl(control: any) {
     this.formservice.addToFormControl(control).subscribe((res) => {
-      console.log(res);
+      this.fetchFormControl();
     });
   }
 
@@ -82,17 +86,34 @@ export class FormBuilderComponent implements OnInit {
 
   openDeleteDialog(control: any) {
     const dialogRef = this.dialog.open(DeleteFieldComponent, { data: control });
-    dialogRef.afterClosed().subscribe(() => {
+    dialogRef.afterClosed().subscribe((res: any) => {
       this.fetchFormControl();
+      if (res) {
+        this.snackbar.open('Field deleted!', 'OK!', {
+          duration: 2000,
+        });
+      }
     });
   }
 
+  previewForm() {
+    this.formservice.formToPreview = this.formControls;
+    this.router.navigate(['preview-form']);
+  }
+
   saveForm() {
-    const formToSave = this.formservice.modifyFormBeforeSaving(
-      this.formControls
-    );
-    this.formservice.saveCompleteForm(formToSave).subscribe(() => {
-      console.log('Saved');
+    const dialogRef = this.dialog.open(SaveFormDialogComponent, {
+      data: this.formControls,
     });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchFormControl();
+      this.snackbar.open('Form saved!', 'OK!', {
+        duration: 3000,
+      });
+    });
+  }
+
+  saveAndPreviewButtonDisabled() {
+    return this.formControls.length <= 0;
   }
 }

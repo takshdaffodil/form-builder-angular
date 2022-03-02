@@ -28,13 +28,20 @@
           "
         >
           <button
-            (click)="router.navigate(['preview-form'])"
+            [disabled]="saveAndPreviewButtonDisabled()"
+            (click)="previewForm()"
             color="primary"
             mat-raised-button
           >
             Preview
           </button>
-          <button (click)="saveForm()" mat-raised-button>Save</button>
+          <button
+            [disabled]="saveAndPreviewButtonDisabled()"
+            (click)="saveForm()"
+            mat-raised-button
+          >
+            Save
+          </button>
           <button
             (click)="router.navigate(['view-forms'])"
             color="primary"
