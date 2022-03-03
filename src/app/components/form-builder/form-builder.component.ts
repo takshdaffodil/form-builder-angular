@@ -79,8 +79,13 @@ export class FormBuilderComponent implements OnInit {
 
   openEditDialog(control: any) {
     const dialogRef = this.dialog.open(FormEditorComponent, { data: control });
-    dialogRef.afterClosed().subscribe(() => {
+    dialogRef.afterClosed().subscribe((res) => {
       this.fetchFormControl();
+      if (res) {
+        this.snackbar.open('Field updated!', 'OK!', {
+          duration: 2000,
+        });
+      }
     });
   }
 

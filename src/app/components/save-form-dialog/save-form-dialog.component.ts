@@ -35,7 +35,9 @@ export class SaveFormDialogComponent {
   emptyFormAfterSave() {
     let formControlToDelete = this.data;
     formControlToDelete.map((field: any) => {
-      this.formservice.emptyFormControl(field.id).subscribe(() => {});
+      this.formservice.emptyFormControl(field.id).subscribe((res) => {
+        console.log(res);
+      });
     });
   }
 }

@@ -108,7 +108,7 @@ export class FormEditorComponent {
         this.updateFormField();
         break;
     }
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
   updateFormField() {

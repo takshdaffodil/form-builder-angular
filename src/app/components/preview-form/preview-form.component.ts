@@ -14,6 +14,5 @@ export class PreviewFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formControls = this.formservice.formToPreview;
-    console.log(this.formControls);
   }
 }

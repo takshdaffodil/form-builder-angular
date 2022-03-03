@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
+import { DeleteFieldComponent } from '../delete-field/delete-field.component';
 import { UpdateFormComponent } from '../update-form/update-form.component';
 // import { UpdateFormComponent } from '../update-form/update-form.component';
 
@@ -40,8 +41,7 @@ export class ViewSavedFormsComponent implements OnInit {
       height: '100vh',
       maxWidth: '100vw',
     });
-    dialogRef.afterClosed().subscribe(() => {
-      this.snackbar.open('Form update!', 'OK!', { duration: 1500 });
+    dialogRef.afterClosed().subscribe((res: any) => {
       this.fetchFormsData();
     });
   }
@@ -52,12 +52,13 @@ export class ViewSavedFormsComponent implements OnInit {
   }
 
   deleteForm(data: any) {
-    this.formservice.deleteSavedForm(data.id).subscribe(() => {
-      console.log('form deleted');
-      this.fetchFormsData();
-      this.snackbar.open('Form deleted!', 'OK!', {
-        duration: 2000,
-      });
+    data['update'] = true;
+    const dialogRef = this.dialog.open(DeleteFieldComponent, { data: data });
+    dialogRef.afterClosed().subscribe((res: any) => {
+      if (res) {
+        this.fetchFormsData();
+        this.snackbar.open('Form deleted!', 'OK!', { duration: 3000 });
+      }
     });
   }
 }
