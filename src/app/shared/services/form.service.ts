@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,6 +9,9 @@ import { environment } from 'src/environments/environment';
 export class FormService {
   allFormControls: any[] = [];
   formToPreview: any[] = [];
+  formToEdit: any = new BehaviorSubject<any>({});
+  formToEditObs: Observable<any> = this.formToEdit.asObservable();
+
   constructor(public http: HttpClient) {}
 
   getAvailableControls() {
@@ -28,6 +32,13 @@ export class FormService {
 
   deleteFormControlField(index: number) {
     return this.http.delete(`${environment.DEV_API_KEY}/formdata/${index}`);
+  }
+
+  addToFormOnEdit(data: any) {
+    return this.http.post(`${environment.DEV_API_KEY}/formOnEdit`, data);
+  }
+  getFormOnEdit() {
+    return this.http.get(`${environment.DEV_API_KEY}/formOnEdit`);
   }
 
   saveCompleteForm(completeForm: any) {
@@ -92,14 +103,35 @@ export class FormService {
     });
   }
 
+  editAndSavFormOnEdit(data: any) {
+    const dataToSend = JSON.parse(JSON.stringify(data));
+    delete dataToSend.update;
+
+    return this.http.put(
+      `${environment.DEV_API_KEY}/savedForms/${data.id}`,
+      dataToSend
+    );
+  }
+
+  emptyFormOnEdit() {
+    this.getFormOnEdit().subscribe((res: any) => {
+      res.map((item: any) => {
+        this.http
+          .delete(`${environment.DEV_API_KEY}/formOnEdit/${item.id}`)
+          .subscribe(() => {});
+      });
+    });
+  }
+
   getaSavedForm(id: string) {
     return this.http.get(`${environment.DEV_API_KEY}/savedForms/${id}`);
   }
-}
 
-interface controlType {
-  name: string;
-  label: string;
-  value: string;
-  id: string;
+  completelyEmptyFormControl() {
+    this.getFormControls().subscribe((res: any) => {
+      res.forEach((item: any) => {
+        this.emptyFormControl(item.id).subscribe(() => {});
+      });
+    });
+  }
 }

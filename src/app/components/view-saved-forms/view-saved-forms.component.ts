@@ -4,8 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
 import { DeleteFieldComponent } from '../delete-field/delete-field.component';
-import { UpdateFormComponent } from '../update-form/update-form.component';
-// import { UpdateFormComponent } from '../update-form/update-form.component';
 
 @Component({
   selector: 'app-view-saved-forms',
@@ -25,6 +23,8 @@ export class ViewSavedFormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchFormsData();
+    this.formservice.emptyFormOnEdit();
+    this.formservice.completelyEmptyFormControl();
   }
 
   fetchFormsData() {
@@ -35,14 +35,14 @@ export class ViewSavedFormsComponent implements OnInit {
 
   editForm(data: any) {
     data['update'] = true;
-    const dialogRef = this.dialog.open(UpdateFormComponent, {
-      data: data,
-      width: '100vw',
-      height: '100vh',
-      maxWidth: '100vw',
-    });
-    dialogRef.afterClosed().subscribe((res: any) => {
-      this.fetchFormsData();
+
+    this.formservice.addToFormOnEdit(data).subscribe(() => {
+      data.actualForm.forEach((item: any) => {
+        this.formservice.addToFormControl(item).subscribe(() => {});
+      });
+      setTimeout(() => {
+        this.router.navigate(['form-builder']);
+      }, 1000);
     });
   }
 

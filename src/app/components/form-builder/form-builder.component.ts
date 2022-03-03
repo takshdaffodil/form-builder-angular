@@ -16,6 +16,8 @@ import { SaveFormDialogComponent } from '../save-form-dialog/save-form-dialog.co
 export class FormBuilderComponent implements OnInit {
   availableControls: any;
   formControls: any[] = [];
+  formOnEdit: any;
+  update: boolean = false;
 
   constructor(
     public formservice: FormService,
@@ -28,7 +30,18 @@ export class FormBuilderComponent implements OnInit {
     this.formservice.getAvailableControls().subscribe((res: any) => {
       this.availableControls = res;
     });
+
     this.fetchFormControl();
+    this.fetchFormOnEdit();
+  }
+
+  fetchFormOnEdit() {
+    this.formservice.getFormOnEdit().subscribe((res: any) => {
+      if (res.length) {
+        this.formOnEdit = res;
+        this.update = res[0].update;
+      }
+    });
   }
 
   drop(event: any) {
@@ -107,14 +120,26 @@ export class FormBuilderComponent implements OnInit {
   }
 
   saveForm() {
+    let data;
+    if (this.update) {
+      data = {
+        ...this.formOnEdit[0],
+        actualForm: this.formControls,
+        update: true,
+      };
+    } else {
+      data = this.formControls;
+    }
     const dialogRef = this.dialog.open(SaveFormDialogComponent, {
-      data: this.formControls,
+      data: data,
     });
-    dialogRef.afterClosed().subscribe(() => {
+    dialogRef.afterClosed().subscribe((res: any) => {
       this.fetchFormControl();
-      this.snackbar.open('Form saved!', 'OK!', {
-        duration: 3000,
-      });
+      if (res) {
+        this.snackbar.open(res, 'OK!', {
+          duration: 3000,
+        });
+      }
     });
   }
 

@@ -13,7 +13,6 @@ import { DeleteFieldComponent } from './components/delete-field/delete-field.com
 import { PreviewFormComponent } from './components/preview-form/preview-form.component';
 import { ViewSavedFormsComponent } from './components/view-saved-forms/view-saved-forms.component';
 import { SaveFormDialogComponent } from './components/save-form-dialog/save-form-dialog.component';
-import { UpdateFormComponent } from './components/update-form/update-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { UpdateFormComponent } from './components/update-form/update-form.compon
     PreviewFormComponent,
     ViewSavedFormsComponent,
     SaveFormDialogComponent,
-    UpdateFormComponent,
   ],
   imports: [
     BrowserModule,
