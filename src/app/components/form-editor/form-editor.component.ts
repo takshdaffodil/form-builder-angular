@@ -8,12 +8,17 @@ import { FormService } from 'src/app/shared/services/form.service';
   templateUrl: './form-editor.component.html',
   styleUrls: ['./form-editor.component.css'],
 })
-export class FormEditorComponent implements OnInit {
+export class FormEditorComponent {
+  update = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public formservice: FormService,
     public dialogRef: MatDialogRef<FormEditorComponent>
-  ) {}
+  ) {
+    if (data.update) {
+      this.update = true;
+    }
+  }
 
   commonForm = new FormGroup({
     labelEdit: new FormControl(this.data.label),
@@ -44,7 +49,6 @@ export class FormEditorComponent implements OnInit {
     return this.commonForm.get('valueEdit')!;
   }
 
-  ngOnInit(): void {}
   onSubmit(event: any, type: string) {
     event.preventDefault();
     switch (this.data.controlType) {
@@ -54,9 +58,13 @@ export class FormEditorComponent implements OnInit {
           label: this.checkboxForm.get('labelEdit')?.value,
           name: this.checkboxForm.get('valueEdit')?.value,
         };
-        this.formservice
-          .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
-          .subscribe(() => {});
+        if (this.update) {
+          this.formservice.updateSavedFormControls(dataToSubmit);
+        } else {
+          this.formservice
+            .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
+            .subscribe(() => {});
+        }
 
         break;
       case 'radio':
@@ -65,9 +73,13 @@ export class FormEditorComponent implements OnInit {
           label: this.radioForm.get('labelOne')?.value,
           labelTwo: this.radioForm.get('labelTwo')?.value,
         };
-        this.formservice
-          .updateDataInFormControl(radioFormData.id, radioFormData)
-          .subscribe(() => {});
+        if (this.update) {
+          this.formservice.updateSavedFormControls(radioFormData);
+        } else {
+          this.formservice
+            .updateDataInFormControl(radioFormData.id, radioFormData)
+            .subscribe(() => {});
+        }
         break;
 
       case 'button':
@@ -75,9 +87,13 @@ export class FormEditorComponent implements OnInit {
           ...this.data,
           value: this.buttonForm.get('valueEdit')?.value,
         };
-        this.formservice
-          .updateDataInFormControl(buttonFormData.id, buttonFormData)
-          .subscribe(() => {});
+        if (this.update) {
+          this.formservice.updateSavedFormControls(buttonFormData);
+        } else {
+          this.formservice
+            .updateDataInFormControl(buttonFormData.id, buttonFormData)
+            .subscribe(() => {});
+        }
         break;
       case 'textbox':
         this.updateFormField();
@@ -92,7 +108,7 @@ export class FormEditorComponent implements OnInit {
         this.updateFormField();
         break;
     }
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
   updateFormField() {
@@ -102,8 +118,12 @@ export class FormEditorComponent implements OnInit {
       name: this.name.value,
       value: this.value.value,
     };
-    this.formservice
-      .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
-      .subscribe(() => {});
+    if (this.update) {
+      this.formservice.updateSavedFormControls(dataToSubmit);
+    } else {
+      this.formservice
+        .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
+        .subscribe(() => {});
+    }
   }
 }

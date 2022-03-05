@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteFieldComponent } from './components/delete-field/delete-field.component';
 import { PreviewFormComponent } from './components/preview-form/preview-form.component';
 import { ViewSavedFormsComponent } from './components/view-saved-forms/view-saved-forms.component';
+import { SaveFormDialogComponent } from './components/save-form-dialog/save-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ViewSavedFormsComponent } from './components/view-saved-forms/view-save
     DeleteFieldComponent,
     PreviewFormComponent,
     ViewSavedFormsComponent,
+    SaveFormDialogComponent,
   ],
   imports: [
     BrowserModule,

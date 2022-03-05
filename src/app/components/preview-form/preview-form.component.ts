@@ -13,9 +13,6 @@ export class PreviewFormComponent implements OnInit {
   constructor(public formservice: FormService, public router: Router) {}
 
   ngOnInit(): void {
-    this.formservice.getFormControls().subscribe((res: any) => {
-      this.formControls = res;
-      console.log(this.formControls);
-    });
+    this.formControls = this.formservice.formToPreview;
   }
 }

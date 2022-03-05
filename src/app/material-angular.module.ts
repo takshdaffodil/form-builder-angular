@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const modules = [
   MatSliderModule,
@@ -33,6 +34,7 @@ const modules = [
   MatGridListModule,
   MatRadioModule,
   MatTableModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

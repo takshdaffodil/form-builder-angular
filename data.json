@@ -1,44 +1,6 @@
 {
-  "formdata": [
-    {
-      "name": "Textbox",
-      "label": "Textbox label",
-      "value": "",
-      "type": "textbox",
-      "controlType": "textbox",
-      "style": "outline",
-      "displayName": "Textbox",
-      "validators": {
-        "required": true,
-        "minLength": 3
-      },
-      "id": 1
-    },
-    {
-      "name": "button",
-      "label": "Button",
-      "value": "SubmitButton",
-      "controlType": "button",
-      "type": "button",
-      "color": "primary",
-      "style": "mat-raised-button",
-      "displayName": "Button",
-      "id": 2
-    },
-    {
-      "name": "Number",
-      "label": "NumberLabel",
-      "value": "",
-      "controlType": "number",
-      "type": "number",
-      "style": "outline",
-      "displayName": "Number",
-      "validators": {
-        "required": true
-      },
-      "id": 3
-    }
-  ],
+  "formdata": [],
+  "formOnEdit": [],
   "availableControls": [
     {
       "name": "Textbox",
@@ -121,20 +83,9 @@
     {
       "actualForm": [
         {
-          "name": "Textarea",
-          "label": "Textarea",
-          "value": "Some random text!! and some  more",
-          "controlType": "textarea",
-          "type": "textarea",
-          "style": "outline",
-          "displayName": "Textarea",
-          "validators": {},
-          "id": 1
-        },
-        {
-          "label": "Lastname",
-          "name": "Textbox",
-          "value": "New value truing",
+          "name": "Nothing",
+          "label": "TextBoxvaluesssssss",
+          "value": "121211111111111",
           "type": "textbox",
           "controlType": "textbox",
           "style": "outline",
@@ -143,31 +94,44 @@
             "required": true,
             "minLength": 3
           },
-          "id": 4
+          "id": 1
         },
         {
-          "label": "Dont Click me!!",
-          "value": true,
-          "controlType": "checkbox",
-          "type": "checkbox",
-          "displayName": "Checkbox",
-          "id": 5
-        },
+          "name": "button",
+          "label": "Button",
+          "value": "Search",
+          "controlType": "button",
+          "type": "button",
+          "color": "primary",
+          "style": "mat-raised-button",
+          "displayName": "Button",
+          "id": 2
+        }
+      ],
+      "id": "cb9b0cfc-7a77-437d-9139-0811adccfc3e",
+      "date": "02/03/2022",
+      "name": "updatename"
+    },
+    {
+      "actualForm": [
         {
-          "name": "Textarea",
-          "label": "Textarea",
-          "value": "Some random text!!",
-          "controlType": "textarea",
-          "type": "textarea",
+          "name": "Textbox",
+          "label": "TextBox",
+          "value": "",
+          "type": "textbox",
+          "controlType": "textbox",
           "style": "outline",
-          "displayName": "Textarea",
-          "validators": {},
-          "id": 7
+          "displayName": "Textbox",
+          "validators": {
+            "required": true,
+            "minLength": 3
+          },
+          "id": 1
         },
         {
           "name": "Number",
           "label": "Number",
-          "value": "1234567",
+          "value": "",
           "controlType": "number",
           "type": "number",
           "style": "outline",
@@ -175,12 +139,12 @@
           "validators": {
             "required": true
           },
-          "id": 8
+          "id": 2
         },
         {
           "name": "Password",
           "label": "Password",
-          "value": "1234567ss",
+          "value": "",
           "controlType": "password",
           "type": "password",
           "style": "outline",
@@ -189,7 +153,7 @@
             "required": true,
             "minLength": "6"
           },
-          "id": 9
+          "id": 3
         },
         {
           "name": "button",
@@ -200,11 +164,23 @@
           "color": "primary",
           "style": "mat-raised-button",
           "displayName": "Button",
-          "id": 10
+          "id": 4
+        },
+        {
+          "name": "Radio",
+          "label": "Option 1",
+          "labelTwo": "Option 2",
+          "value": "ValueOne",
+          "valueTwo": "ValueTwo",
+          "controlType": "radio",
+          "type": "radio",
+          "displayName": "Radio",
+          "id": 5
         }
       ],
-      "id": "04d34890-2a68-4456-acb7-d7ddbe4add18",
-      "date": "01/03/2022"
+      "id": "bd961972-6c5a-48b2-8eea-c7078aab0336",
+      "date": "03/03/2022",
+      "name": "mqww"
     },
     {
       "actualForm": [
@@ -218,7 +194,8 @@
           "displayName": "Number",
           "validators": {
             "required": true
-          }
+          },
+          "id": 1
         },
         {
           "name": "Password",
@@ -231,7 +208,8 @@
           "validators": {
             "required": true,
             "minLength": "6"
-          }
+          },
+          "id": 2
         },
         {
           "name": "Password",
@@ -244,11 +222,27 @@
           "validators": {
             "required": true,
             "minLength": "6"
-          }
+          },
+          "id": 3
+        },
+        {
+          "name": "Password",
+          "label": "Password",
+          "value": "",
+          "controlType": "password",
+          "type": "password",
+          "style": "outline",
+          "displayName": "Password",
+          "validators": {
+            "required": true,
+            "minLength": "6"
+          },
+          "id": 4
         }
       ],
-      "id": "a8f0fd6d-bb68-401f-b18b-ef8b4d4d9265",
-      "date": "01/03/2022"
+      "id": "bc0cf4c8-944d-4dcd-850d-29e91405a7fe",
+      "date": "03/03/2022",
+      "name": "latestform"
     }
   ]
 }
