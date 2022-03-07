@@ -61,7 +61,6 @@ export class FormBuilderComponent implements OnInit {
   fetchFormControl() {
     this.formservice.formToPreview.subscribe((res: any[]) => {
       if (res) {
-        console.log(res);
         this.formControls = res;
       }
     });
