@@ -85,7 +85,7 @@
         {
           "name": "Nothing",
           "label": "TextBoxvaluesssssss",
-          "value": "121211111111111",
+          "value": "",
           "type": "textbox",
           "controlType": "textbox",
           "style": "outline",
@@ -109,7 +109,7 @@
         }
       ],
       "id": "cb9b0cfc-7a77-437d-9139-0811adccfc3e",
-      "date": "02/03/2022",
+      "date": "07/03/2022",
       "name": "updatename"
     },
     {
@@ -264,6 +264,51 @@
       "id": "f12f8e6c-a6b9-44d2-beff-721958fa3c47",
       "date": "2022-03-07T06:26:58.520Z",
       "name": "newFormaa"
+    },
+    {
+      "actualForm": [
+        {
+          "name": "Number",
+          "label": "Number",
+          "value": "",
+          "controlType": "number",
+          "type": "number",
+          "style": "outline",
+          "displayName": "Number",
+          "validators": {
+            "required": true
+          },
+          "id": "203362ea-fc92-48e0-862c-18c2b088db0f"
+        },
+        {
+          "name": "Password",
+          "label": "Password",
+          "value": "",
+          "controlType": "password",
+          "type": "password",
+          "style": "outline",
+          "displayName": "Password",
+          "validators": {
+            "required": true,
+            "minLength": "6"
+          },
+          "id": "58d3c769-4cc7-4b33-b608-30adc45fdb62"
+        },
+        {
+          "name": "button",
+          "label": "Button",
+          "value": "Submit",
+          "controlType": "button",
+          "type": "button",
+          "color": "primary",
+          "style": "mat-raised-button",
+          "displayName": "Button",
+          "id": "b790232f-9899-44ad-b484-16b36268d932"
+        }
+      ],
+      "id": "a6baa825-393f-4dc0-b665-a772acb1eafe",
+      "date": "07/03/2022",
+      "name": "TEST FORM"
     }
   ]
 }

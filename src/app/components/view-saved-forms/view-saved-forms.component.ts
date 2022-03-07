@@ -36,7 +36,7 @@ export class ViewSavedFormsComponent implements OnInit {
   }
 
   previewForm(data: any) {
-    this.formservice.formToPreview.next(data.actualForm);
+    this.formservice.formToPreview.next(data);
     this.router.navigate(['preview-form']);
   }
 

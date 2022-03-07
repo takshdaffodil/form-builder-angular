@@ -8,9 +8,18 @@
       style="margin-left: 50px"
       mat-raised-button
       color="primary"
-      (click)="backToFormBuilder()"
+      (click)="backToFormBuild()"
     >
-      Back to form build
+      Go back
+    </button>
+    <button
+      style="margin-left: 50px"
+      mat-raised-button
+      color="primary"
+      (click)="backToEdit()"
+      [disabled]="!wholeFormData.id"
+    >
+      Edit
     </button>
     <button
       style="margin-left: 50px"

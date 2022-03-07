@@ -113,7 +113,10 @@ export class FormBuilderComponent implements OnInit {
   }
 
   previewForm() {
-    this.formservice.formToPreview.next(this.formControls);
+    this.formservice.formToPreview.next({
+      actualForm: this.formControls,
+      id: null,
+    });
     this.router.navigate(['preview-form']);
   }
 
