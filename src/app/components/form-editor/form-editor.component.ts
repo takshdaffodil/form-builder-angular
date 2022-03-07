@@ -58,12 +58,18 @@ export class FormEditorComponent {
           label: this.checkboxForm.get('labelEdit')?.value,
           name: this.checkboxForm.get('valueEdit')?.value,
         };
+        let dataToSend = {
+          id: dataToSubmit.id,
+          edit: true,
+          editedData: dataToSubmit,
+        };
         if (this.update) {
           this.formservice.updateSavedFormControls(dataToSubmit);
         } else {
-          this.formservice
-            .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
-            .subscribe(() => {});
+          // this.formservice
+          //   .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
+          //   .subscribe(() => {});
+          this.dialogRef.close(dataToSend);
         }
 
         break;
@@ -73,12 +79,18 @@ export class FormEditorComponent {
           label: this.radioForm.get('labelOne')?.value,
           labelTwo: this.radioForm.get('labelTwo')?.value,
         };
+        let radioDataToSend = {
+          id: radioFormData.id,
+          edit: true,
+          editedData: radioFormData,
+        };
         if (this.update) {
           this.formservice.updateSavedFormControls(radioFormData);
         } else {
-          this.formservice
-            .updateDataInFormControl(radioFormData.id, radioFormData)
-            .subscribe(() => {});
+          // this.formservice
+          //   .updateDataInFormControl(radioFormData.id, radioFormData)
+          //   .subscribe(() => {});
+          this.dialogRef.close(radioDataToSend);
         }
         break;
 
@@ -87,12 +99,18 @@ export class FormEditorComponent {
           ...this.data,
           value: this.buttonForm.get('valueEdit')?.value,
         };
+        let buttonDataToSend = {
+          id: buttonFormData.id,
+          edit: true,
+          editedData: buttonFormData,
+        };
         if (this.update) {
           this.formservice.updateSavedFormControls(buttonFormData);
         } else {
-          this.formservice
-            .updateDataInFormControl(buttonFormData.id, buttonFormData)
-            .subscribe(() => {});
+          // this.formservice
+          //   .updateDataInFormControl(buttonFormData.id, buttonFormData)
+          //   .subscribe(() => {});
+          this.dialogRef.close(buttonDataToSend);
         }
         break;
       case 'textbox':
@@ -108,7 +126,6 @@ export class FormEditorComponent {
         this.updateFormField();
         break;
     }
-    this.dialogRef.close(true);
   }
 
   updateFormField() {
@@ -121,9 +138,16 @@ export class FormEditorComponent {
     if (this.update) {
       this.formservice.updateSavedFormControls(dataToSubmit);
     } else {
-      this.formservice
-        .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
-        .subscribe(() => {});
+      const dataToSend = {
+        id: dataToSubmit.id,
+        edit: true,
+        editedData: dataToSubmit,
+      };
+      console.log(dataToSubmit);
+      this.dialogRef.close(dataToSend);
+      // this.formservice
+      //   .updateDataInFormControl(dataToSubmit.id, dataToSubmit)
+      //   .subscribe(() => {});
     }
   }
 }

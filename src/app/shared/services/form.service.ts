@@ -8,10 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class FormService {
   allFormControls: any[] = [];
-  formToPreview: any[] = [];
-  formToEdit: any = new BehaviorSubject<any>({});
-  formToEditObs: Observable<any> = this.formToEdit.asObservable();
-
+  formToPreview = new BehaviorSubject<any>([]);
+  formToPreviewFromTable = new BehaviorSubject<any>([]);
   constructor(public http: HttpClient) {}
 
   getAvailableControls() {
@@ -107,10 +105,10 @@ export class FormService {
     const dataToSend = JSON.parse(JSON.stringify(data));
     delete dataToSend.update;
 
-    return this.http.put(
-      `${environment.DEV_API_KEY}/savedForms/${data.id}`,
-      dataToSend
-    );
+    return this.http.put(`${environment.DEV_API_KEY}/savedForms/${data.id}`, {
+      ...dataToSend,
+      date: new Date().toLocaleDateString(),
+    });
   }
 
   emptyFormOnEdit() {

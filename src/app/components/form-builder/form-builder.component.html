@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="100vh">
+<mat-grid-list cols="7" rowHeight="100vh">
   <mat-grid-tile colspan="1" style="border: 1px solid black">
     <div class="example-container" style="margin-left: 10%">
       <h2>Form Element List</h2>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile colspan="3" style="border: 1px solid black">
+  <mat-grid-tile colspan="4" style="border: 1px solid black">
     <div class="example-container" style="width: 60%">
       <div style="display: flex; justify-content: space-between; margin: 10px">
         <h2>Form</h2>
@@ -24,7 +24,7 @@
           style="
             display: flex;
             justify-content: space-between;
-            min-width: 300px;
+            min-width: 400px;
           "
         >
           <button
@@ -43,11 +43,20 @@
             Save
           </button>
           <button
-            (click)="router.navigate(['view-forms'])"
+            (click)="routeToFormTable()"
             color="primary"
             mat-raised-button
           >
             View Saved
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            color="warn"
+            (click)="clearForm()"
+            [disabled]="saveAndPreviewButtonDisabled()"
+          >
+            Clear Form
           </button>
         </div>
       </div>
@@ -149,6 +158,13 @@
           <mat-icon (click)="openDeleteDialog(control)">delete</mat-icon>
         </form>
       </div>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="1">
+    <div>
+      <pre style="padding: 15px">
+        {{ formControls | json }}
+      </pre>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

@@ -1,8 +1,9 @@
 import { copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
+import { formatPercent } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
 import { DeleteFieldComponent } from '../delete-field/delete-field.component';
 import { FormEditorComponent } from '../form-editor/form-editor.component';
@@ -23,25 +24,17 @@ export class FormBuilderComponent implements OnInit {
     public formservice: FormService,
     public dialog: MatDialog,
     public router: Router,
-    public snackbar: MatSnackBar
+    public snackbar: MatSnackBar,
+    public activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.formControls = [];
     this.formservice.getAvailableControls().subscribe((res: any) => {
       this.availableControls = res;
     });
 
     this.fetchFormControl();
-    this.fetchFormOnEdit();
-  }
-
-  fetchFormOnEdit() {
-    this.formservice.getFormOnEdit().subscribe((res: any) => {
-      if (res.length) {
-        this.formOnEdit = res;
-        this.update = res[0].update;
-      }
-    });
   }
 
   drop(event: any) {
@@ -51,21 +44,7 @@ export class FormBuilderComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      this.formservice
-        .updateDataInFormControl(
-          event.container.data[event.currentIndex].id,
-          event.container.data[event.previousIndex]
-        )
-        .subscribe(() => {
-          this.formservice
-            .updateDataInFormControl(
-              event.container.data[event.previousIndex].id,
-              event.container.data[event.currentIndex]
-            )
-            .subscribe(() => {
-              this.fetchFormControl();
-            });
-        });
+      console.log(this.formControls);
     } else {
       copyArrayItem(
         event.previousContainer.data,
@@ -73,14 +52,27 @@ export class FormBuilderComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      this.updateFormControl(event.previousContainer.data[event.previousIndex]);
+
+      this.formControls[event.currentIndex]['id'] =
+        this.formservice.uuidForForm();
     }
   }
 
   fetchFormControl() {
-    this.formservice.getFormControls().subscribe((res: any) => {
-      this.formservice.allFormControls = res;
-      this.formControls = res;
+    this.formservice.formToPreview.subscribe((res: any[]) => {
+      if (res) {
+        console.log(res);
+        this.formControls = res;
+      }
+    });
+    this.activatedRoute.queryParams.subscribe((res: any) => {
+      if (res && res.id) {
+        this.formservice.getaSavedForm(res.id).subscribe((controls: any) => {
+          this.formControls = controls.actualForm;
+          this.formOnEdit = controls;
+          this.update = true;
+        });
+      }
     });
   }
 
@@ -93,8 +85,11 @@ export class FormBuilderComponent implements OnInit {
   openEditDialog(control: any) {
     const dialogRef = this.dialog.open(FormEditorComponent, { data: control });
     dialogRef.afterClosed().subscribe((res) => {
-      this.fetchFormControl();
-      if (res) {
+      if (res && res.edit) {
+        const controlToEditIndex = this.formControls.findIndex(
+          (controls) => controls.id === res.id
+        );
+        this.formControls.splice(controlToEditIndex, 1, res.editedData);
         this.snackbar.open('Field updated!', 'OK!', {
           duration: 2000,
         });
@@ -105,8 +100,11 @@ export class FormBuilderComponent implements OnInit {
   openDeleteDialog(control: any) {
     const dialogRef = this.dialog.open(DeleteFieldComponent, { data: control });
     dialogRef.afterClosed().subscribe((res: any) => {
-      this.fetchFormControl();
-      if (res) {
+      if (res.delete) {
+        const controlToDeleteIndex = this.formControls.findIndex(
+          (controls) => controls.id === res.id
+        );
+        this.formControls.splice(controlToDeleteIndex, 1);
         this.snackbar.open('Field deleted!', 'OK!', {
           duration: 2000,
         });
@@ -115,15 +113,19 @@ export class FormBuilderComponent implements OnInit {
   }
 
   previewForm() {
-    this.formservice.formToPreview = this.formControls;
+    this.formservice.formToPreview.next(this.formControls);
     this.router.navigate(['preview-form']);
+  }
+
+  clearForm() {
+    this.formControls = [];
   }
 
   saveForm() {
     let data;
     if (this.update) {
       data = {
-        ...this.formOnEdit[0],
+        ...this.formOnEdit,
         actualForm: this.formControls,
         update: true,
       };
@@ -134,9 +136,9 @@ export class FormBuilderComponent implements OnInit {
       data: data,
     });
     dialogRef.afterClosed().subscribe((res: any) => {
-      this.fetchFormControl();
-      if (res) {
-        this.snackbar.open(res, 'OK!', {
+      if (res && (res.edit || res.save)) {
+        this.formControls = [];
+        this.snackbar.open(res.message, 'OK!', {
           duration: 3000,
         });
       }
@@ -145,5 +147,11 @@ export class FormBuilderComponent implements OnInit {
 
   saveAndPreviewButtonDisabled() {
     return this.formControls.length <= 0;
+  }
+
+  routeToFormTable() {
+    this.clearForm();
+    this.formservice.formToPreview.next([]);
+    this.router.navigate(['view-forms']);
   }
 }
