@@ -23,8 +23,6 @@ export class ViewSavedFormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchFormsData();
-    this.formservice.emptyFormOnEdit();
-    this.formservice.completelyEmptyFormControl();
   }
 
   fetchFormsData() {
@@ -34,20 +32,11 @@ export class ViewSavedFormsComponent implements OnInit {
   }
 
   editForm(data: any) {
-    data['update'] = true;
-
-    this.formservice.addToFormOnEdit(data).subscribe(() => {
-      data.actualForm.forEach((item: any) => {
-        this.formservice.addToFormControl(item).subscribe(() => {});
-      });
-      setTimeout(() => {
-        this.router.navigate(['form-builder']);
-      }, 1000);
-    });
+    this.router.navigate(['form-builder'], { queryParams: { id: data.id } });
   }
 
   previewForm(data: any) {
-    this.formservice.formToPreview = data.actualForm;
+    this.formservice.formToPreview.next(data.actualForm);
     this.router.navigate(['preview-form']);
   }
 

@@ -19,8 +19,12 @@ export class DeleteFieldComponent {
     if (this.data.update) {
       this.formservice.deleteSavedForm(this.data.id).subscribe(() => {});
     } else {
-      this.formservice.deleteFormControlField(this.data.id).subscribe(() => {});
+      // this.formservice.deleteFormControlField(this.data.id).subscribe(() => {});
     }
-    this.dialogRef.close(true);
+    const dataToSendBack = {
+      delete: true,
+      id: this.data.id,
+    };
+    this.dialogRef.close(dataToSendBack);
   }
 }
